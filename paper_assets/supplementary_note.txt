@@ -1,0 +1,10 @@
+Supplementary Materials Note
+
+The supplementary file contains:
+- Table S1. Country codes used in the main text and figures
+- Table S2. Descriptive statistics of the base decision matrix
+- Table S3. Correlation matrix of the criteria
+- Table S4. Top-10 countries under baseline ranking vs robust ranking
+- Figure S1. Distribution of criterion values across countries
+- Figure S2. Heatmap of the normalized base decision matrix
+- Figure S3. Pairwise dominance heatmap across branching worlds
