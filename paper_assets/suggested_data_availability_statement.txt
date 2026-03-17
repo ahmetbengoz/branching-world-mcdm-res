@@ -1,1 +1,5 @@
+Data Availability Statement
+
+The empirical dataset used in this study is publicly available from Mendeley Data:
+Bączkiewicz, A. (2025). Decision matrices including performance values of alternatives for evaluation European countries regarding sustainable RES share (Version 2). https://doi.org/10.17632/hyggsrh68c.2
 
