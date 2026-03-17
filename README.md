@@ -49,7 +49,7 @@ branching-world-mcdm-res/
     ├── suggested_code_availability_statement.txt
     └── supplementary_note.txt
 
-# How to run
+## How to run
 
 Install the required Python packages:
 pip install -r requirements.txt
