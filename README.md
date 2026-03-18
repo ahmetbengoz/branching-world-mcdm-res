@@ -79,7 +79,7 @@ RV: Rank Volatility
 
 Country code note
 
-Country codes are used in selected main-text tables and figures for consistency with the source dataset and to avoid unnecessary political interpretation. The code CY* is retained strictly for traceability and does not imply any political recognition or institutional position of the author.
+For presentation consistency, countries are denoted by standard country codes throughout the main text tables, figures, and supplementary materials. 
 
 Reproducibility note
 
