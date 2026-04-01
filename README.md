@@ -1,86 +1,119 @@
-# Branching-World Sensitivity Analysis for Robust Ranking in MCDM
+branching-world-mcdm-res
 
-This repository contains the reproducible materials for the manuscript:
+Reproducible code and outputs for a branching-world sensitivity analysis framework for robust multi-criteria decision-making (MCDM) ranking using renewable energy performance data for European countries.
 
-**Branching-World Sensitivity Analysis for Robust Ranking in Multi-Criteria Decision Making: Evidence from Renewable Energy Performance of European Countries**
+Overview
 
-## Repository purpose
+This repository contains the full reproducible pipeline used to evaluate renewable energy performance under planning uncertainty through a branching-world sensitivity analysis framework. The empirical application uses the 2022 SHARES-based renewable energy dataset for 29 European countries and evaluates ranking robustness with TOPSIS and VIKOR in parallel.
 
-This repository supports the empirical analysis presented in the paper and documents the workflow used to generate the main and supplementary outputs. The repository is intended to improve transparency, reproducibility, and reusability of the proposed branching-world sensitivity analysis framework.
+The pipeline generates the full set of final tables and figures used in the manuscript, together with supplementary outputs and intermediate checkpoints.
 
-The repository covers:
+Data sources
 
-- baseline TOPSIS ranking
-- branching-world generation under perturbation
-- robustness metrics, including World Win Rate (WWR), Expected Rank (ER), Worst-Case Rank (WCR), and Rank Volatility (RV)
-- main-text tables and figures
-- supplementary tables and figures
-- country-code based output versions used in the final manuscript
+The repository uses publicly available renewable energy data derived from the SHARES collection for 2022.
 
-## Data source
+Included input files in the data/ folder:
 
-The empirical application uses the following open dataset:
+SHARES_2022_PERCENTAGE.csv
+SHARES_2022_PERCENTAGE.xlsx
+SHARES_2022_KTOE.csv
+SHARES_2022_KTOE.xlsx
+SHARES_2022_POPULATION.csv
+SHARES_2022_POPULATION.xlsx
+population_KES2024.csv
+population_KES2024.xlsx
+country_names.csv
+country_names.xlsx
+data_source_note.pdf
 
-Bączkiewicz, A. (2025). *Decision matrices including performance values of alternatives for evaluation European countries regarding sustainable RES share* (Version 2) [Dataset]. Mendeley Data. https://doi.org/10.17632/hyggsrh68c.2
+The analysis in the manuscript is based on the percentage-format decision matrix.
 
-The repository structure is organized so that the original dataset archive can be placed in `data/raw/`, while extracted or processed files can be stored in `data/processed/`.
+Repository structure
+data/ — raw input files used by the pipeline
+scripts/ — modular analysis scripts and shared utilities
+run_pipeline.py — single entry point for the full reproducible workflow
+outputs/tables/ — final manuscript and supplementary tables in CSV and XLSX formats
+outputs/figures/ — final manuscript and supplementary figures
+outputs/checkpoints/ — intermediate outputs and diagnostic files created during execution
+How to run
 
-## Repository structure
+Run the full pipeline with:
 
-```text
-branching-world-mcdm-res/
-├── README.md
-├── requirements.txt
-├── LICENSE
-├── .gitignore
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── README.md
-├── src/
-│   ├── extract_dataset.py
-│   ├── generate_analysis_outputs.py
-│   └── generate_countrycode_package.py
-├── outputs/
-│   ├── figures/
-│   └── tables/
-└── paper_assets/
-    ├── suggested_data_availability_statement.txt
-    ├── suggested_code_availability_statement.txt
-    └── supplementary_note.txt
+python run_pipeline.py
 
-## How to run
+The pipeline executes all analysis stages in sequence and writes the final outputs to outputs/tables/ and outputs/figures/.
 
-Install the required Python packages:
-pip install -r requirements.txt
+Pipeline order
 
-Extract the dataset:
-python src/extract_dataset.py
+The workflow is executed in the following order:
 
-Generate the main analysis outputs:
-python src/generate_analysis_outputs.py
+01_data_audit.py
+02_baseline_methods.py
+03_policy_scenarios.py
+04_branching_worlds.py
+05_framework_sensitivity.py
+06_cross_method_benchmark.py
+07_redundancy_robustness.py
+08_ordering_rule_sensitivity.py
+09_naive_comparator_benchmark.py
+Final output files
+Main text tables
+table_01_data_audit_summary
+table_02_baseline_deterministic_rankings
+table_03_baseline_method_agreement_summary
+table_04_policy_priority_scenarios_and_weights
+table_05_deterministic_scenario_top5_summary
+table_06_branching_world_leadership_summary
+table_07_balanced_robust_cross_method_top10
+table_08_balanced_robust_cross_method_summary
+table_09_framework_sensitivity_summary
+table_10_scenariowise_robust_cross_method_summary
+table_11_redundancy_robustness_summary
+table_12_ordering_rule_sensitivity
+table_13_naive_vs_branching_summary
 
-Generate the country-code package used in the final manuscript:
-python src/generate_countrycode_package.py
+Each table is produced in both .csv and .xlsx format.
 
-# Main analytical components
+Supplementary tables
+table_S1_full_correlation_matrix
+table_S2_high_correlation_pairs
+table_S3_topsis_top10_by_scenario
+table_S4_vikor_top10_by_scenario
+table_S5_full_balanced_robust_cross_method_comparison
+table_S6_country_level_ordering_rule_changes
+table_S7_country_level_naive_vs_branching_comparison
 
-The proposed framework evaluates alternatives across multiple branching worlds generated through structured perturbations in criterion weights and performance values. Instead of relying only on a single deterministic ranking, the approach interprets results through cross-world robustness behaviour.
+Each supplementary table is produced in both .csv and .xlsx format.
 
-The main metrics used in the repository are:
+Main text figures
+figure_1_baseline_rank_comparison.png
+figure_2a_topsis_rank_shifts.png
+figure_2b_vikor_rank_shifts.png
+figure_3a_topsis_framework_top10_overlap.png
+figure_3b_vikor_framework_top10_overlap.png
+figure_4a_topsis_framework_spearman.png
+figure_4b_vikor_framework_spearman.png
+figure_5_balanced_robust_rank_comparison.png
+figure_6_scenariowise_top10_overlap.png
+figure_7a_topsis_redundancy_rank_changes.png
+figure_7b_vikor_redundancy_rank_changes.png
+Supplementary figures
+figure_S1_criterion_boxplots.png
+figure_S2_normalized_heatmap.png
+figure_S3_correlation_heatmap.png
+Analysis scope
 
-WWR: World Win Rate
+The pipeline covers:
 
-ER: Expected Rank
-
-WCR: Worst-Case Rank
-
-RV: Rank Volatility
-
-Country code note
-
-For presentation consistency, countries are denoted by standard country codes throughout the main text tables, figures, and supplementary materials. 
-
+dataset audit and redundancy diagnostics
+baseline deterministic comparison of TOPSIS and VIKOR
+deterministic policy-priority scenarios
+branching-world robust ranking under simultaneous weight and performance perturbations
+framework-sensitivity analysis
+cross-method benchmarking
+redundancy-robustness analysis
+ordering-rule sensitivity analysis
+naive deterministic aggregation versus branching-world benchmark comparison
 Reproducibility note
 
-This repository is intended to accompany the manuscript and provide a transparent record of the empirical workflow, output structure, and supporting materials used in the study.
+The repository is organized so that the output file names produced by the code match the final table and figure identifiers used in the manuscript. No manual renaming is required after execution.
