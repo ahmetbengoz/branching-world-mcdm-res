@@ -1,0 +1,6 @@
+Scenario,G1 Electricity,G2 Transport,G3 Heating/Cooling,G4 Gross Final Consumption
+S0_Balanced,0.25,0.25,0.25,0.25
+S1_ElectricityPriority,0.4,0.2,0.2,0.2
+S2_TransportPriority,0.2,0.4,0.2,0.2
+S3_HeatingCoolingPriority,0.2,0.2,0.4,0.2
+S4_FinalConsumptionPriority,0.2,0.2,0.2,0.4

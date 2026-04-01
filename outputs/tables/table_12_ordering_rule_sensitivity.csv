@@ -1,0 +1,5 @@
+Alternative rule,Top-1 changes across 10 blocks,Top-5 overlap vs current (min-max),Top-10 overlap vs current (min-max),Spearman vs current (min-max),Mean abs. rank diff vs current (min-max)
+R1_ER_WWR_WCR_RV,0,5-5,10-10,1.000000-1.000000,0.000000-0.000000
+R2_ER_WCR_WWR_RV,0,5-5,10-10,1.000000-1.000000,0.000000-0.000000
+R3_ER_only,0,5-5,10-10,1.000000-1.000000,0.000000-0.000000
+R4_WWR_ER_RV,4,3-5,6-9,0.813793-0.977833,0.758621-3.241379

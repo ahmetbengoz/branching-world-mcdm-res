@@ -1,0 +1,11 @@
+Scenario,Method,Top-1 country,Top-5 countries
+S0_Balanced,TOPSIS,SE,SE; NO; IS; AT; DK
+S0_Balanced,VIKOR,SE,SE; NO; DK; FI; PT
+S1_ElectricityPriority,TOPSIS,SE,SE; NO; IS; DK; AT
+S1_ElectricityPriority,VIKOR,SE,SE; DK; PT; NO; FI
+S2_TransportPriority,TOPSIS,NO,NO; SE; AT; IS; FI
+S2_TransportPriority,VIKOR,SE,SE; NO; AT; DK; FI
+S3_HeatingCoolingPriority,TOPSIS,SE,SE; NO; IS; MT; DK
+S3_HeatingCoolingPriority,VIKOR,SE,SE; NO; DK; FI; PT
+S4_FinalConsumptionPriority,TOPSIS,SE,SE; NO; IS; FI; DK
+S4_FinalConsumptionPriority,VIKOR,SE,SE; NO; DK; FI; AT

@@ -1,0 +1,17 @@
+Audit item,Value
+Number of countries,29
+Number of criteria,18
+Missing cells,0
+High-correlation pairs (|r| ≥ 0.80),6
+Criterion with highest zero ratio,C15
+Highest zero ratio,0.6896551724137931
+Criterion with highest coefficient of variation,C15
+Highest coefficient of variation,3.9812084349058328
+Criterion with highest skewness,C15
+Highest skewness,4.756879196711203
+Strongest correlated pair,C6–C16
+Correlation of strongest pair,0.9317915068363013
+Second strongest correlated pair,C12–C13
+Correlation of second strongest pair,0.9211210614475286
+Third strongest correlated pair,C1–C16
+Correlation of third strongest pair,0.8735167322062302

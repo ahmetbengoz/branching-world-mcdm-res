@@ -1,0 +1,7 @@
+Metric,Value
+Spearman rho,0.8325123152709358
+Kendall tau,0.6748768472906402
+Top-5 overlap,2.0
+Top-10 overlap,8.0
+Mean absolute rank difference,3.2413793103448274
+Maximum absolute rank difference,16.0

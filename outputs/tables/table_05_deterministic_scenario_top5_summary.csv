@@ -1,0 +1,6 @@
+Scenario,TOPSIS top-5,VIKOR top-5
+S0_Balanced,"NO, SE, IS, AT, DK","SE, NO, DK, AT, PT"
+S1_ElectricityPriority,"IS, NO, SE, DK, AT","SE, IT, PT, FI, HR"
+S2_TransportPriority,"NO, SE, AT, IS, FI","SE, NO, AT, FI, DK"
+S3_HeatingCoolingPriority,"NO, SE, IS, MT, AT","SE, FI, FR, DE, NO"
+S4_FinalConsumptionPriority,"NO, SE, IS, AT, FI","SE, NO, DK, FI, AT"

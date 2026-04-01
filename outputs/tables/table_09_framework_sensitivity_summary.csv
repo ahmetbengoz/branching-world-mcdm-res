@@ -1,0 +1,3 @@
+Method,Spearman rho vs baseline (min–max),Top-10 overlap (min–max),Mean absolute rank difference (min–max),Observed top-1 countries
+TOPSIS,0.982266–1.000000,9–10,0.000000–1.172414,"SE, NO"
+VIKOR,0.987192–0.998030,9–10,0.206897–0.758621,SE
