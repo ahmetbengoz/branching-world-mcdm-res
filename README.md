@@ -1,14 +1,14 @@
-branching-world-mcdm-res
+## branching-world-mcdm-res
 
 Reproducible code and outputs for a branching-world sensitivity analysis framework for robust multi-criteria decision-making (MCDM) ranking using renewable energy performance data for European countries.
 
-Overview
+## Overview
 
 This repository contains the full reproducible pipeline used to evaluate renewable energy performance under planning uncertainty through a branching-world sensitivity analysis framework. The empirical application uses the 2022 SHARES-based renewable energy dataset for 29 European countries and evaluates ranking robustness with TOPSIS and VIKOR in parallel.
 
 The pipeline generates the full set of final tables and figures used in the manuscript, together with supplementary outputs and intermediate checkpoints.
 
-Data sources
+## Data sources
 
 The repository uses publicly available renewable energy data derived from the SHARES collection for 2022.
 
@@ -28,7 +28,7 @@ data_source_note.pdf
 
 The analysis in the manuscript is based on the percentage-format decision matrix.
 
-Repository structure
+## Repository structure
 data/ — raw input files used by the pipeline
 scripts/ — modular analysis scripts and shared utilities
 run_pipeline.py — single entry point for the full reproducible workflow
@@ -37,13 +37,13 @@ outputs/figures/ — final manuscript and supplementary figures
 outputs/checkpoints/ — intermediate outputs and diagnostic files created during execution
 How to run
 
-Run the full pipeline with:
+# Run the full pipeline with:
 
 python run_pipeline.py
 
 The pipeline executes all analysis stages in sequence and writes the final outputs to outputs/tables/ and outputs/figures/.
 
-Pipeline order
+# Pipeline order
 
 The workflow is executed in the following order:
 
@@ -74,7 +74,7 @@ table_13_naive_vs_branching_summary
 
 Each table is produced in both .csv and .xlsx format.
 
-Supplementary tables
+# Supplementary tables
 table_S1_full_correlation_matrix
 table_S2_high_correlation_pairs
 table_S3_topsis_top10_by_scenario
@@ -85,7 +85,7 @@ table_S7_country_level_naive_vs_branching_comparison
 
 Each supplementary table is produced in both .csv and .xlsx format.
 
-Main text figures
+# Main text figures
 figure_1_baseline_rank_comparison.png
 figure_2a_topsis_rank_shifts.png
 figure_2b_vikor_rank_shifts.png
@@ -103,7 +103,7 @@ figure_S2_normalized_heatmap.png
 figure_S3_correlation_heatmap.png
 Analysis scope
 
-The pipeline covers:
+## The pipeline covers:
 
 dataset audit and redundancy diagnostics
 baseline deterministic comparison of TOPSIS and VIKOR
@@ -116,4 +116,4 @@ ordering-rule sensitivity analysis
 naive deterministic aggregation versus branching-world benchmark comparison
 Reproducibility note
 
-The repository is organized so that the output file names produced by the code match the final table and figure identifiers used in the manuscript. No manual renaming is required after execution.
+# The repository is organized so that the output file names produced by the code match the final table and figure identifiers used in the manuscript. No manual renaming is required after execution.
