@@ -1,52 +1,143 @@
-## branching-world-mcdm-res
+# Branching-World Sensitivity Analysis for Robust Renewable Energy Benchmarking
 
-Reproducible code and outputs for a branching-world sensitivity analysis framework for robust multi-criteria decision-making (MCDM) ranking using renewable energy performance data for European countries.
+This repository contains the reproducible code, input data structure, output tables and figures for the manuscript:
 
-## Overview
+**Robust renewable energy performance benchmarking under planning uncertainty: A branching-world sensitivity analysis of European countries**
 
-This repository contains the full reproducible pipeline used to evaluate renewable energy performance under planning uncertainty through a branching-world sensitivity analysis framework. The empirical application uses the 2022 SHARES-based renewable energy dataset for 29 European countries and evaluates ranking robustness with TOPSIS and VIKOR in parallel.
+The study develops a branching-world sensitivity analysis framework for robust multi-criteria decision-making (MCDM) benchmarking. The empirical application evaluates renewable-energy performance for 29 European countries using the 2022 percentage-based SHARES decision matrix and compares TOPSIS and VIKOR under deterministic, scenario-based, stochastic and redundancy-adjusted specifications.
 
-The pipeline generates the full set of final tables and figures used in the manuscript, together with supplementary outputs and intermediate checkpoints.
+## Repository purpose
 
-## Data sources
+This repository is intended to support transparency, reproducibility and independent verification of the manuscript results. It provides the workflow used to generate the main-text tables, supplementary tables, figures and robustness diagnostics reported in the revised manuscript.
 
-The repository uses publicly available renewable energy data derived from the SHARES collection for 2022.
+The pipeline covers:
 
-Included input files in the data/ folder:
+* dataset audit and redundancy diagnostics;
+* deterministic TOPSIS and VIKOR baseline rankings;
+* policy-priority scenario analysis;
+* branching-world simulation under simultaneous weight and performance perturbation;
+* framework-sensitivity analysis;
+* cross-method benchmarking;
+* redundancy-robustness analysis;
+* ordering-rule sensitivity analysis;
+* naive deterministic aggregation comparison;
+* C15 exclusion robustness analysis added during revision.
 
-SHARES_2022_PERCENTAGE.csv
-SHARES_2022_PERCENTAGE.xlsx
-SHARES_2022_KTOE.csv
-SHARES_2022_KTOE.xlsx
-SHARES_2022_POPULATION.csv
-SHARES_2022_POPULATION.xlsx
-population_KES2024.csv
-population_KES2024.xlsx
-country_names.csv
-country_names.xlsx
-data_source_note.pdf
+## Data source
 
-The analysis in the manuscript is based on the percentage-format decision matrix.
+The empirical dataset used in the study is publicly available from Mendeley Data:
+
+Bączkiewicz, A., Wątróbski, J. and Krol, R. (2025), *Decision matrix including performance values of alternatives for evaluation European countries regarding sustainable RES share*, Version 2, Mendeley Data. https://doi.org/10.17632/hyggsrh68c.2
+
+The manuscript analysis uses the **2022 percentage-based SHARES matrix** for 29 European countries and 18 criteria.
+
+## Required input file
+
+The main pipeline expects the following file:
+
+```text
+data/SHARES_2022_PERCENTAGE.csv
+```
+
+This is the required input file for reproducing the manuscript analysis.
+
+Optional auxiliary files may also be retained in the `data/` folder:
+
+```text
+data/SHARES_2022_PERCENTAGE.xlsx
+data/SHARES_2022_KTOE.csv
+data/SHARES_2022_KTOE.xlsx
+data/SHARES_2022_POPULATION.csv
+data/SHARES_2022_POPULATION.xlsx
+data/population_KES2024.csv
+data/population_KES2024.xlsx
+data/country_names.csv
+data/country_names.xlsx
+```
 
 ## Repository structure
-data/ — raw input files used by the pipeline
-scripts/ — modular analysis scripts and shared utilities
-run_pipeline.py — single entry point for the full reproducible workflow
-outputs/tables/ — final manuscript and supplementary tables in CSV and XLSX formats
-outputs/figures/ — final manuscript and supplementary figures
-outputs/checkpoints/ — intermediate outputs and diagnostic files created during execution
-How to run
 
-# Run the full pipeline with:
+```text
+branching-world-mcdm-res/
+├── data/
+│   ├── README.md
+│   ├── SHARES_2022_PERCENTAGE.csv
+│   ├── SHARES_2022_PERCENTAGE.xlsx
+│   ├── SHARES_2022_KTOE.csv
+│   ├── SHARES_2022_KTOE.xlsx
+│   ├── SHARES_2022_POPULATION.csv
+│   ├── SHARES_2022_POPULATION.xlsx
+│   ├── population_KES2024.csv
+│   ├── population_KES2024.xlsx
+│   ├── country_names.csv
+│   └── country_names.xlsx
+│
+├── scripts/
+│   ├── 01_data_audit.py
+│   ├── 02_baseline_methods.py
+│   ├── 03_policy_scenarios.py
+│   ├── 04_branching_worlds.py
+│   ├── 05_framework_sensitivity.py
+│   ├── 06_cross_method_benchmark.py
+│   ├── 07_redundancy_robustness.py
+│   ├── 08_ordering_rule_sensitivity.py
+│   ├── 09_naive_comparator_benchmark.py
+│   └── 10_c15_exclusion_robustness.py
+│
+├── outputs/
+│   ├── tables/
+│   ├── figures/
+│   └── checkpoints/
+│
+├── docs/
+│   └── README_R1_C15_UPDATE.md
+│
+├── config.py
+├── common.py
+├── run_pipeline.py
+├── requirements.txt
+├── environment.yml
+├── LICENSE
+└── README.md
+```
 
+## How to run
+
+Install the required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the full reproducible pipeline:
+
+```bash
 python run_pipeline.py
+```
 
-The pipeline executes all analysis stages in sequence and writes the final outputs to outputs/tables/ and outputs/figures/.
+The pipeline writes final tables to:
 
-# Pipeline order
+```text
+outputs/tables/
+```
+
+and figures to:
+
+```text
+outputs/figures/
+```
+
+Intermediate diagnostic outputs are written to:
+
+```text
+outputs/checkpoints/
+```
+
+## Pipeline order
 
 The workflow is executed in the following order:
 
+```text
 01_data_audit.py
 02_baseline_methods.py
 03_policy_scenarios.py
@@ -56,8 +147,14 @@ The workflow is executed in the following order:
 07_redundancy_robustness.py
 08_ordering_rule_sensitivity.py
 09_naive_comparator_benchmark.py
-Final output files
-Main text tables
+10_c15_exclusion_robustness.py
+```
+
+## Main-text tables
+
+The pipeline generates the following main-text tables:
+
+```text
 table_01_data_audit_summary
 table_02_baseline_deterministic_rankings
 table_03_baseline_method_agreement_summary
@@ -71,10 +168,14 @@ table_10_scenariowise_robust_cross_method_summary
 table_11_redundancy_robustness_summary
 table_12_ordering_rule_sensitivity
 table_13_naive_vs_branching_summary
+table_14_c15_exclusion_summary
+```
 
-Each table is produced in both .csv and .xlsx format.
+## Supplementary tables
 
-# Supplementary tables
+The pipeline generates the following supplementary tables:
+
+```text
 table_S1_full_correlation_matrix
 table_S2_high_correlation_pairs
 table_S3_topsis_top10_by_scenario
@@ -82,10 +183,17 @@ table_S4_vikor_top10_by_scenario
 table_S5_full_balanced_robust_cross_method_comparison
 table_S6_country_level_ordering_rule_changes
 table_S7_country_level_naive_vs_branching_comparison
+table_S8_c15_exclusion_full_comparison
+table_S9_no_c15_top10_robust_metrics
+table_S10_c15_exclusion_deterministic_comparison
+c15_exclusion_outputs
+```
 
-Each supplementary table is produced in both .csv and .xlsx format.
+## Figures
 
-# Main text figures
+Main-text figures:
+
+```text
 figure_1_baseline_rank_comparison.png
 figure_2a_topsis_rank_shifts.png
 figure_2b_vikor_rank_shifts.png
@@ -97,23 +205,45 @@ figure_5_balanced_robust_rank_comparison.png
 figure_6_scenariowise_top10_overlap.png
 figure_7a_topsis_redundancy_rank_changes.png
 figure_7b_vikor_redundancy_rank_changes.png
-Supplementary figures
+```
+
+Supplementary figures:
+
+```text
 figure_S1_criterion_boxplots.png
 figure_S2_normalized_heatmap.png
 figure_S3_correlation_heatmap.png
-Analysis scope
+figure_S4_c15_rank_displacement.png
+```
 
-## The pipeline covers:
+## Revision-specific C15 robustness test
 
-dataset audit and redundancy diagnostics
-baseline deterministic comparison of TOPSIS and VIKOR
-deterministic policy-priority scenarios
-branching-world robust ranking under simultaneous weight and performance perturbations
-framework-sensitivity analysis
-cross-method benchmarking
-redundancy-robustness analysis
-ordering-rule sensitivity analysis
-naive deterministic aggregation versus branching-world benchmark comparison
-Reproducibility note
+During revision, an additional exclusion-based robustness test was added for criterion C15 because it had the highest zero ratio, coefficient of variation and skewness in the audited matrix.
 
-# The repository is organized so that the output file names produced by the code match the final table and figure identifiers used in the manuscript. No manual renaming is required after execution.
+The C15 exclusion analysis removes C15 from the 18-criterion decision matrix and recomputes:
+
+* deterministic TOPSIS and VIKOR comparisons;
+* balanced branching-world robust rankings;
+* full-model versus no-C15 rank displacement;
+* top-5 and top-10 overlap;
+* Spearman rank correlation;
+* maximum rank displacement.
+
+The results are reported in:
+
+```text
+outputs/tables/table_14_c15_exclusion_summary.csv
+outputs/tables/table_S8_c15_exclusion_full_comparison.csv
+outputs/tables/table_S9_no_c15_top10_robust_metrics.csv
+outputs/tables/table_S10_c15_exclusion_deterministic_comparison.csv
+outputs/tables/c15_exclusion_outputs.xlsx
+outputs/figures/figure_S4_c15_rank_displacement.png
+```
+
+## Reproducibility note
+
+The repository is organized so that output file names match the table and figure identifiers used in the manuscript and supplementary material. After running the pipeline, no manual renaming is required.
+
+## License
+
+This repository is released under the MIT License.
