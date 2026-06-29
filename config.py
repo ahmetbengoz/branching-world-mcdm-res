@@ -28,7 +28,7 @@ for path in [OUTPUT_DIR, TABLE_DIR, FIG_DIR, CHECKPOINT_DIR, DOCS_DIR]:
 
 # ---------------------------------------------------------------------
 # Main-text and supplementary table file names
-# The write_table() helper appends .csv and .xlsx as implemented.
+# The write_table() helper appends .csv and/or .xlsx as implemented.
 # ---------------------------------------------------------------------
 
 TABLE_FILES = {
