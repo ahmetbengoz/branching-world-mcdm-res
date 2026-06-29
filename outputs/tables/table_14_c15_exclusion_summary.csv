@@ -1,0 +1,3 @@
+Method,Full-model leader,No-C15 leader,Top-5 overlap,Top-10 overlap,Spearman rho,Kendall tau,Mean absolute displacement,Maximum absolute displacement,Sweden rank change,Norway rank change,Iceland rank change,Malta rank change
+TOPSIS,SE,SE,5,9,0.9901477832512312,0.9507389162561575,0.6206896551724138,4,0,0,0,4
+VIKOR,SE,SE,5,10,0.9852216748768471,0.9408866995073891,0.7586206896551724,6,0,0,0,6
