@@ -46,7 +46,7 @@ TABLE_FILES = {
     "table_11": "table_11_redundancy_robustness_summary",
     "table_12": "table_12_ordering_rule_sensitivity",
     "table_13": "table_13_naive_vs_branching_summary",
-    "table_14": "table_14_c15_exclusion_summary",
+    "table_15": "table_15_c15_exclusion_summary",
 
     # Supplementary tables
     "table_S1": "table_S1_full_correlation_matrix",
@@ -59,6 +59,9 @@ TABLE_FILES = {
     "table_S8": "table_S8_c15_exclusion_full_comparison",
     "table_S9": "table_S9_no_c15_top10_robust_metrics",
     "table_S10": "table_S10_c15_exclusion_deterministic_comparison",
+    "table_S11": "table_S11_vikor_parameter_sensitivity",
+    "vikor_v_balanced_top10": "vikor_v_balanced_top10_supporting",
+    "paired_bootstrap": "paired_bootstrap_leader_separation",
 
     # Consolidated workbook
     "c15_outputs": "c15_exclusion_outputs",

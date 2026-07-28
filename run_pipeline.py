@@ -18,6 +18,8 @@ SCRIPT_ORDER = [
     "08_ordering_rule_sensitivity.py",
     "09_naive_comparator_benchmark.py",
     "10_c15_exclusion_robustness.py",
+    "11_vikor_parameter_sensitivity.py",
+    "12_paired_bootstrap.py",
 ]
 
 
