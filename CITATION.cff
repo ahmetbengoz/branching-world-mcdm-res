@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the archived release."
+title: "Branching-world sensitivity analysis for robust renewable energy benchmarking"
+type: software
+authors:
+  - family-names: "Bengöz"
+    given-names: "Ahmet"
+repository-code: "https://github.com/ahmetbengoz/branching-world-mcdm-res"
+license: MIT
+version: 2.1.0
+keywords:
+  - multi-criteria decision making
+  - renewable energy
+  - sensitivity analysis
+  - TOPSIS
+  - VIKOR
+  - reproducibility

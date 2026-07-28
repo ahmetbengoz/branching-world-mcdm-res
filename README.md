@@ -21,7 +21,9 @@ The pipeline covers:
 * redundancy-robustness analysis;
 * ordering-rule sensitivity analysis;
 * naive deterministic aggregation comparison;
-* C15 exclusion robustness analysis added during revision.
+* C15 exclusion robustness analysis added during revision;
+* VIKOR compromise-parameter sensitivity at `v = 0.3, 0.5, 0.7`;
+* paired bootstrap separation of the two leading balanced-world alternatives.
 
 ## Data source
 
@@ -82,16 +84,17 @@ branching-world-mcdm-res/
 │   ├── 07_redundancy_robustness.py
 │   ├── 08_ordering_rule_sensitivity.py
 │   ├── 09_naive_comparator_benchmark.py
-│   └── 10_c15_exclusion_robustness.py
+│   ├── 10_c15_exclusion_robustness.py
+│   ├── 11_vikor_parameter_sensitivity.py
+│   └── 12_paired_bootstrap.py
 │
 ├── outputs/
 │   ├── tables/
 │   ├── figures/
 │   └── checkpoints/
 │
-├── docs/
-│   └── README_R1_C15_UPDATE.md
-│
+├── .zenodo.json
+├── CITATION.cff
 ├── config.py
 ├── common.py
 ├── run_pipeline.py
@@ -148,6 +151,8 @@ The workflow is executed in the following order:
 08_ordering_rule_sensitivity.py
 09_naive_comparator_benchmark.py
 10_c15_exclusion_robustness.py
+11_vikor_parameter_sensitivity.py
+12_paired_bootstrap.py
 ```
 
 ## Main-text tables
@@ -168,7 +173,7 @@ table_10_scenariowise_robust_cross_method_summary
 table_11_redundancy_robustness_summary
 table_12_ordering_rule_sensitivity
 table_13_naive_vs_branching_summary
-table_14_c15_exclusion_summary
+table_15_c15_exclusion_summary
 ```
 
 ## Supplementary tables
@@ -186,6 +191,9 @@ table_S7_country_level_naive_vs_branching_comparison
 table_S8_c15_exclusion_full_comparison
 table_S9_no_c15_top10_robust_metrics
 table_S10_c15_exclusion_deterministic_comparison
+table_S11_vikor_parameter_sensitivity
+vikor_v_balanced_top10_supporting
+paired_bootstrap_leader_separation
 c15_exclusion_outputs
 ```
 
@@ -232,12 +240,32 @@ The C15 exclusion analysis removes C15 from the 18-criterion decision matrix and
 The results are reported in:
 
 ```text
-outputs/tables/table_14_c15_exclusion_summary.csv
+outputs/tables/table_15_c15_exclusion_summary.csv
 outputs/tables/table_S8_c15_exclusion_full_comparison.csv
 outputs/tables/table_S9_no_c15_top10_robust_metrics.csv
 outputs/tables/table_S10_c15_exclusion_deterministic_comparison.csv
 outputs/tables/c15_exclusion_outputs.xlsx
 outputs/figures/figure_S4_c15_rank_displacement.png
+```
+
+## Revision-specific VIKOR and bootstrap tests
+
+`scripts/11_vikor_parameter_sensitivity.py` reproduces Supplementary
+Table S11. It re-estimates deterministic and branching-world VIKOR
+rankings at `v = 0.3, 0.5, 0.7` and compares each non-reference result
+with the scenario-specific `v = 0.5` ordering. The same sampled weights
+and performance-noise matrices are reused across values of `v`.
+
+`scripts/12_paired_bootstrap.py` reproduces the paired bootstrap reported
+in the manuscript. It resamples the 5,000 balanced-world within-world
+rank differences `R_NO - R_SE` 10,000 times using a fixed seed.
+
+The corresponding outputs are:
+
+```text
+outputs/tables/table_S11_vikor_parameter_sensitivity.csv
+outputs/tables/vikor_v_balanced_top10_supporting.csv
+outputs/tables/paired_bootstrap_leader_separation.csv
 ```
 
 ## Reproducibility note

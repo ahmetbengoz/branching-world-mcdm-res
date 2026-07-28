@@ -1,0 +1,3 @@
+Method,Within-world difference,Number of worlds,Bootstrap resamples,Bootstrap seed,Mean difference,95% interval lower,95% interval upper,Interpretation
+TOPSIS,R_NO - R_SE,5000,10000,18,0.2298,0.168,0.2924,Positive values favour SE
+VIKOR,R_NO - R_SE,5000,10000,18,2.7496,2.6399950000000003,2.861605,Positive values favour SE

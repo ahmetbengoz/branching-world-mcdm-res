@@ -47,7 +47,7 @@ def ranks_from_scores(scores: np.ndarray, descending: bool = True) -> np.ndarray
     return ranks
 
 
-def topsis_rank(X: np.ndarray, w: np.ndarray) -> np.ndarray:
+def topsis_results(X: np.ndarray, w: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     denom = np.sqrt((X ** 2).sum(axis=0))
     denom[denom == 0] = 1.0
     V = X / denom * w
@@ -56,10 +56,16 @@ def topsis_rank(X: np.ndarray, w: np.ndarray) -> np.ndarray:
     dpos = np.sqrt(((V - ideal) ** 2).sum(axis=1))
     dneg = np.sqrt(((V - anti) ** 2).sum(axis=1))
     score = dneg / (dpos + dneg)
-    return ranks_from_scores(score, descending=True)
+    return score, ranks_from_scores(score, descending=True)
 
 
-def vikor_rank(X: np.ndarray, w: np.ndarray, v: float = 0.5) -> np.ndarray:
+def topsis_rank(X: np.ndarray, w: np.ndarray) -> np.ndarray:
+    return topsis_results(X, w)[1]
+
+
+def vikor_results(
+    X: np.ndarray, w: np.ndarray, v: float = 0.5
+) -> tuple[np.ndarray, np.ndarray]:
     fstar = X.max(axis=0)
     fminus = X.min(axis=0)
     denom = fstar - fminus
@@ -68,7 +74,11 @@ def vikor_rank(X: np.ndarray, w: np.ndarray, v: float = 0.5) -> np.ndarray:
     S = regret.sum(axis=1)
     R = regret.max(axis=1)
     Q = v * (S - S.min()) / (S.max() - S.min()) + (1 - v) * (R - R.min()) / (R.max() - R.min())
-    return ranks_from_scores(Q, descending=False)
+    return Q, ranks_from_scores(Q, descending=False)
+
+
+def vikor_rank(X: np.ndarray, w: np.ndarray, v: float = 0.5) -> np.ndarray:
+    return vikor_results(X, w, v=v)[1]
 
 
 def simulate_worlds(X: np.ndarray, groups: list[list[int]], method: str, rng: np.random.Generator) -> np.ndarray:
@@ -166,7 +176,7 @@ def main() -> None:
     comparison = pd.DataFrame(comparison_rows).sort_values(["Method", "Full robust rank"])
     no_c15_top10 = pd.DataFrame(no_c15_top10_rows)
 
-    summary.to_csv(TABLE_DIR / "table_14_c15_exclusion_summary.csv", index=False)
+    summary.to_csv(TABLE_DIR / "table_15_c15_exclusion_summary.csv", index=False)
     comparison.to_csv(TABLE_DIR / "table_S8_c15_exclusion_full_comparison.csv", index=False)
     no_c15_top10.to_csv(TABLE_DIR / "table_S9_no_c15_top10_robust_metrics.csv", index=False)
 
@@ -177,19 +187,23 @@ def main() -> None:
         ("No-C15 17-criterion model", X_no_c15, GROUPS_NO_C15),
     ]:
         base_w = build_group_weights(X.shape[1], groups)
-        topsis_r = topsis_rank(X, base_w)
-        vikor_r = vikor_rank(X, base_w)
-        for c, tr, vr in zip(countries, topsis_r, vikor_r):
+        topsis_score, topsis_r = topsis_results(X, base_w)
+        vikor_q, vikor_r = vikor_results(X, base_w)
+        for c, ts, tr, vq, vr in zip(
+            countries, topsis_score, topsis_r, vikor_q, vikor_r
+        ):
             deterministic_rows.append({
                 "model": label,
                 "Country": c,
+                "TOPSIS_score": float(ts),
                 "TOPSIS_rank": int(tr),
+                "VIKOR_Q": float(vq),
                 "VIKOR_rank": int(vr),
             })
     deterministic = pd.DataFrame(deterministic_rows)
     deterministic.to_csv(TABLE_DIR / "table_S10_c15_exclusion_deterministic_comparison.csv", index=False)
     with pd.ExcelWriter(TABLE_DIR / "c15_exclusion_outputs.xlsx") as writer:
-        summary.to_excel(writer, sheet_name="Table_14_summary", index=False)
+        summary.to_excel(writer, sheet_name="Table_15_summary", index=False)
         comparison.to_excel(writer, sheet_name="Table_S8_full", index=False)
         no_c15_top10.to_excel(writer, sheet_name="Table_S9_top10", index=False)
         deterministic.to_excel(writer, sheet_name="Table_S10_deterministic", index=False)

@@ -1,0 +1,21 @@
+{
+  "title": "Branching-World Sensitivity Analysis for Robust Renewable Energy Benchmarking",
+  "description": "Reproducibility package for a branching-world sensitivity analysis of renewable-energy performance benchmarking. The archive includes source data, executable Python scripts, generated tables, figures, and robustness diagnostics for TOPSIS and VIKOR.",
+  "creators": [
+    {
+      "name": "Bengöz, Ahmet"
+    }
+  ],
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "multi-criteria decision making",
+    "renewable energy",
+    "sensitivity analysis",
+    "TOPSIS",
+    "VIKOR",
+    "branching-world analysis",
+    "reproducibility"
+  ]
+}
